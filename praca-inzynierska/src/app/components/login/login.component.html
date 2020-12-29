@@ -1,28 +1,29 @@
 <div class="sign-wrapper">
-    <div class="text-center">
-        <form class="form-sign" (ngSubmit)="onSubmit(f)" #f="ngForm">
-            <img src="../../../assets/angular.png" alt="Angular Logo" class="mb-4" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
-            <label for="inputEmail" class="sr-only">Adres email</label>
-            <input type="email" name="inputEmail" id="inputEmail" placeholder="Adres email" class="form-control"
-                required autofocus ngModel name="email" autocomplete="username"
-                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
-            <label for="inputPassword" class="sr-only">Hasło</label>
-            <input type="password" name="inputPassword" id="inputPassword" placeholder="Hasło" class="form-control"
-                required ngModel name="password" autocomplete="current-password" pattern=^[a-zA-Z0-9]{6,}$>
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me">
-                    Zapamiętaj mnie
-                </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Zaloguj się</button>
-            <p class="mt-5 mb-3 text-muted">
-                Nie masz konta?
-                <a routerLink="/register">Zarejestruj się</a>
-            </p>
-
-            <a routerLink="/" class="">Powrót na stronę główną.</a>
-        </form>
-    </div>
+  <div class="text-center">
+    <img src="../../../assets/angular.png" alt="Angular Logo" class="mb-4" width="72" height="72">
+    <app-spinner *ngIf="isLoading"></app-spinner>
+    <app-error-block [errorMessage]="errorMessage" *ngIf="isError"></app-error-block>
+    <form *ngIf="!isLoading" class="form-sign" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
+      <label for="inputEmail" class="sr-only">Adres email</label>
+      <input type="email" name="inputEmail" id="inputEmail" placeholder="Adres email" class="form-control" required
+        autofocus ngModel name="email" autocomplete="username"
+        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
+      <label for="inputPassword" class="sr-only">Hasło</label>
+      <input type="password" name="inputPassword" id="inputPassword" placeholder="Hasło" class="form-control" required
+        ngModel name="password" autocomplete="current-password" pattern=^[a-zA-Z0-9]{6,}$>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me">
+          Zapamiętaj mnie
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Zaloguj się</button>
+      <p class="mt-5 mb-3 text-muted">
+        Nie masz konta?
+        <a routerLink="/register">Zarejestruj się</a>
+      </p>
+      <a routerLink="/" class="">Powrót na stronę główną.</a>
+    </form>
+  </div>
 </div>

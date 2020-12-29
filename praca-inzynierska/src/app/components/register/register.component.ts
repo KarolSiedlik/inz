@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { errorMessages } from 'src/app/common/error-messages';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -11,9 +11,10 @@ import { UserService } from 'src/app/services/user/user.service';
 export class RegisterComponent {
   registeredSucessfully = false;
   isLoading = false;
+  isError = false;
+  errorMessage = errorMessages.DEFAULT;
 
-  constructor(private user: UserService,
-    private router: Router) { }
+  constructor(private user: UserService) { }
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
@@ -29,12 +30,30 @@ export class RegisterComponent {
       return;
     }
 
-    this.isLoading = true;
-    this.user.register(email, password).then(() => {
-      this.registeredSucessfully = true;
-      this.isLoading = false;
-    });
+    this.registerNewUser(email, password);
 
     form.reset();
+  }
+
+  private registerNewUser(email: string, password: string) {
+    this.isLoading = true;
+    this.isError = false;
+
+    this.user.register(email, password).then(
+      () => {
+        this.registeredSucessfully = true;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isError = true;
+        this.isLoading = false
+        if (error.error.message = 'EMAIL_EXISTS') {
+          this.errorMessage = errorMessages.EMAIL_EXISTS;
+        } else {
+          console.warn(error);
+          this.errorMessage = errorMessages.DEFAULT;
+        }
+      }
+    );
   }
 }

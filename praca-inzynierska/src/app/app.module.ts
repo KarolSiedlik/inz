@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ErrorBlockComponent } from './components/error-block/error-block.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     LoginComponent,
     RegisterComponent,
     LandingComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ErrorBlockComponent
   ],
   imports: [
     BrowserModule,
