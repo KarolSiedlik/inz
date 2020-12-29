@@ -1,30 +1,41 @@
 <div class="sign-wrapper">
     <div class="text-center">
-        <form class="form-sign">
-            <img src="../../../assets/angular.png" alt="Angular Logo" class="mb-4" width="72" height="72">
+        <img src="../../../assets/angular.png" alt="Angular Logo" class="mb-4" width="72" height="72">
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <form *ngIf="!registeredSucessfully && !isLoading" class="form-sign" (ngSubmit)="onSubmit(f)" #f="ngForm">
             <h1 class="h3 mb-3 font-weight-normal">Rejestracja</h1>
-            <label for="inputFirstName" class="sr-only">Imię</label>
+            <!-- <label for="inputFirstName" class="sr-only">Imię</label>
             <input type="text" name="inputFirstName" id="inputFirstName" placeholder="Imię" class="form-control"
-                required autofocus>
+                required autofocus ngModel name="firstName" autocomplete="given-name">
 
             <label for="inputLastName" class="sr-only">Nazwisko</label>
             <input type="text" name="inputLastName" id="inputLastName" placeholder="Nazwisko" class="form-control"
-                required>
+                required ngModel name="lastName" autocomplete="family-name"> -->
 
             <label for="inputEmail" class="sr-only">Adres email</label>
             <input type="email" name="inputEmail" id="inputEmail" placeholder="Adres email" class="form-control"
-                required>
+                required ngModel name="email" autocomplete="email"
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="Adres email">
             <label for="inputPassword" class="sr-only">Hasło</label>
             <input type="password" name="inputPassword" id="inputPassword" placeholder="Hasło" class="form-control"
-                required>
+                required ngModel name="password" autocomplete="new-password" pattern=^[a-zA-Z0-9]{6,}$
+                title="Wpisz conajmniej 6 znaków">
             <label for="checkPassword" class="sr-only">Powtórz hasło</label>
             <input type="password" name="checkPassword" id="checkPassword" placeholder="Powtórz hasło"
-                class="form-control" required>
-            <button class="btn btn-lg btn-primary btn-block">Zarejestruj się</button>
+                class="form-control" required ngModel name="checkPassword" autocomplete="new-password"
+                pattern=^[a-zA-Z0-9]{6,}$ title="Pole musi się zgadzać z poprzednim">
+            <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Zarejestruj
+                się</button>
             <p class="mt-5 mb-3 text-muted">
                 Masz już konto?
-                <a href="">Zaloguj się</a>
+                <a routerLink="/login">Zaloguj się</a>
             </p>
+
+            <a routerLink="/">Powrót na stronę główną.</a>
         </form>
+        <div *ngIf="registeredSucessfully" class="registeredSuccessfully">
+            <p>Rejestracja przebiegła pomyślnie. </p>
+            <button routerLink="/login" class="btn btn-primary">Zaloguj się</button>
+        </div>
     </div>
 </div>
