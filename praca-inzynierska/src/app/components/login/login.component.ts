@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { errorMessages } from 'src/app/common/error-messages';
-import { UserService } from 'src/app/services/user/user.service';
+import { IAuthResponseData, UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -35,9 +35,9 @@ export class LoginComponent {
     this.isError = false;
 
     this.user.login(email, password).then(
-      () => {
+      (response: IAuthResponseData) => {
         this.isLoading = false;
-        this.user.isLoggedIn = true;
+        this.user.handleUserAuthentication(response);
         this.router.navigateByUrl('/');
       },
       (error) => {

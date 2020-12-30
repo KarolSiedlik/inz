@@ -34,8 +34,9 @@
       <a routerLink="/">Powrót na stronę główną.</a>
     </form>
     <div *ngIf="registeredSucessfully" class="registeredSuccessfully">
-      <p>Rejestracja przebiegła pomyślnie. </p>
-      <button routerLink="/login" class="btn btn-primary">Zaloguj się</button>
+      <p>Rejestracja przebiegła pomyślnie.</p>
+      <p>Możesz teraz powrócić na stronę główną jako zalogowany użytkownik.</p>
+      <button routerLink="/" class="btn btn-primary">Powrót na stronę główną.</button>
     </div>
   </div>
 </div>

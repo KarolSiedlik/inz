@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { errorMessages } from 'src/app/common/error-messages';
-import { UserService } from 'src/app/services/user/user.service';
+import { IAuthResponseData, UserService } from 'src/app/services/user/user.service';
+import { couldStartTrivia } from 'typescript';
 
 @Component({
   selector: 'app-register',
@@ -40,7 +41,8 @@ export class RegisterComponent {
     this.isError = false;
 
     this.user.register(email, password).then(
-      () => {
+      (response: IAuthResponseData) => {
+        this.user.handleUserAuthentication(response);
         this.registeredSucessfully = true;
         this.isLoading = false;
       },
