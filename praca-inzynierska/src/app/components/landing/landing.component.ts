@@ -72,8 +72,10 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   private handleUserDataResponse(data: IUserData) {
     this.isLoading = false;
-    this.userData = data;
-    this.userDisplayName = this.userData.userInfo.firstName;
+    if (data) { // with no data in db, promise will be resolved as null
+      this.userData = data;
+      this.userDisplayName = this.userData.userInfo.firstName;
+    }
   }
 
   private handleUserDataError(error: any) {

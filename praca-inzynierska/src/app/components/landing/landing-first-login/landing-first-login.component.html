@@ -1,0 +1,54 @@
+<div class="first-login">
+  <h1>Witaj!</h1>
+  <br>
+  <p>Zanim zaczniemy, uzupełnij informacje o sobie.</p>
+  <br>
+  <form class="first-login__form" #f="ngForm" (ngSubmit)="onFirstLoginSubmit(f)">
+    <div class="first-login__names">
+      <div>
+        <label for="firstName">Imię</label>
+        <input type="text" id="firstName" placeholder="Imię" class="form-control" required autofocus ngModel
+          name="firstName" autocomplete="given-name">
+      </div>
+      <div>
+        <label for="lastName">Nazwisko</label>
+        <input type="text" id="lastName" placeholder="Nazwisko" class="form-control" required ngModel name="lastName"
+          autocomplete="family-name">
+      </div>
+    </div>
+    <div class="first-login__date-sex-group">
+      <div>
+        <label for="birthDate">Data urodzenia</label>
+        <input type="date" id="birthDate" placeholder="Data urodzenia" class="form-control" required ngModel
+          name="birthDate" autocomplete="">
+      </div>
+      <div class="first-login__sex">
+        Płeć
+        <div class="first-login__sex__inner-first">
+          <input type="radio" value="male" name="sex" ngModel>
+          <label for="male">Męska</label>
+        </div>
+        <div class="first-login__sex__inner">
+          <input type="radio" value="female" name="sex" ngModel>
+          <label for="female">Żeńska</label>
+        </div>
+      </div>
+    </div>
+    <div class="first-login__height-weight-group">
+      <div>
+        <label for="height">Wzrost</label>
+        <input type="text" id="height" placeholder="Wzrost" class="form-control" required ngModel name="height"
+          autocomplete="height">
+      </div>
+      <div>
+        <label for="weight">Waga</label>
+        <input type="text" id="weight" placeholder="Waga" class="form-control" ngModel name="weight" required
+          autocomplete="weight">
+      </div>
+    </div>
+    <div class="first-login__submit-wrapper">
+      <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Zapisz</button>
+    </div>
+  </form>
+
+</div>
