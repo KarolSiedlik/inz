@@ -5,14 +5,6 @@
     <app-error-block [errorMessage]="errorMessage" *ngIf="isError"></app-error-block>
     <form *ngIf="!registeredSucessfully && !isLoading" class="form-sign" (ngSubmit)="onSubmit(f)" #f="ngForm">
       <h1 class="h3 mb-3 font-weight-normal">Rejestracja</h1>
-      <!-- <label for="inputFirstName" class="sr-only">Imię</label>
-            <input type="text" name="inputFirstName" id="inputFirstName" placeholder="Imię" class="form-control"
-                required autofocus ngModel name="firstName" autocomplete="given-name">
-
-            <label for="inputLastName" class="sr-only">Nazwisko</label>
-            <input type="text" name="inputLastName" id="inputLastName" placeholder="Nazwisko" class="form-control"
-                required ngModel name="lastName" autocomplete="family-name"> -->
-
       <label for="inputEmail" class="sr-only">Adres email</label>
       <input type="email" name="inputEmail" id="inputEmail" placeholder="Adres email" class="form-control" required
         ngModel name="email" autocomplete="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"

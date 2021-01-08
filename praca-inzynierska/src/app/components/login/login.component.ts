@@ -18,16 +18,12 @@ export class LoginComponent {
     private router: Router) { }
 
   onSubmit(form: NgForm) {
-    if (!form.valid) {
-      return;
+    if (form.valid) {
+      const email = form.value.email;
+      const password = form.value.password;
+
+      this.loginUser(email, password);
     }
-
-    const email = form.value.email;
-    const password = form.value.password;
-
-    this.loginUser(email, password);
-
-    form.reset();
   }
 
   private loginUser(email: string, password: string) {
@@ -35,28 +31,32 @@ export class LoginComponent {
     this.isError = false;
 
     this.user.login(email, password).then(
-      (response: IAuthResponseData) => {
-        this.isLoading = false;
-        this.user.handleUserAuthentication(response);
-        this.router.navigateByUrl('/');
-      },
-      (error) => {
-        this.isError = true;
-        this.isLoading = false;
+      (response: IAuthResponseData) => this.handleUserLoginSuccess(response),
+      (error) => this.handleUserLoginError(error),
+    );
+  }
 
-        const errMsg = error.error.error.message;
+  private handleUserLoginSuccess(data: IAuthResponseData) {
+    this.isLoading = false;
+    this.user.handleUserAuthentication(data);
+    this.router.navigateByUrl('/');
+  }
 
-        if (errMsg && errMsg === 'INVALID_EMAIL') {
-          this.errorMessage = errorMessages.INVALID_EMAIL;
-        } else if (errMsg && errMsg === 'INVALID_PASSWORD') {
-          this.errorMessage = errorMessages.INVALID_PASSWORD;
-        } else if (errMsg && errMsg === 'EMAIL_NOT_FOUND') {
-          this.errorMessage = errorMessages.EMAIL_NOT_FOUND;
-        } else {
-          console.warn(error);
-          this.errorMessage = errorMessages.DEFAULT;
-        }
-      }
-    )
+  private handleUserLoginError(error: { error: { error: { message: any } } }) {
+    this.isError = true;
+    this.isLoading = false;
+
+    const errMsg = error.error.error.message;
+
+    if (errMsg && errMsg === 'INVALID_EMAIL') {
+      this.errorMessage = errorMessages.INVALID_EMAIL;
+    } else if (errMsg && errMsg === 'INVALID_PASSWORD') {
+      this.errorMessage = errorMessages.INVALID_PASSWORD;
+    } else if (errMsg && errMsg === 'EMAIL_NOT_FOUND') {
+      this.errorMessage = errorMessages.EMAIL_NOT_FOUND;
+    } else {
+      console.warn(error);
+      this.errorMessage = errorMessages.DEFAULT;
+    }
   }
 }

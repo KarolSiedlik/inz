@@ -1,26 +1,88 @@
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  height: 100%;
 }
 
 .container {
-    padding-top: 80px;
+  padding-top: 80px;
 }
 
-// .button-wrapper {
-//     display: flex;
-//     justify-content: flex-end;
-// }
+.ng-invalid.ng-touched {
+  border-color: red;
+  z-index: 2;
+}
 
-.description-footer{
-    margin-top: 20%;
-    margin-left: 55%;
+.description-footer {
+  margin-top: 20%;
+  margin-left: 55%;
 }
 
 .getting-started {
-    margin-top: 40px;
+  margin-top: 40px;
+}
+
+.first-login {
+  width: 70%;
+
+  &__names {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__sex {
+    width: 23%;
+    justify-content: flex-start;
+
+    &__inner {
+      width: 70%;
+    }
+
+    &__inner-first {
+      margin-top: 10px;
+      width: 70%;
+    }
+  }
+
+  &__date-sex-group {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__height-weight-group {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__submit-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    width: 49%;
+  }
+}
+
+.first-login input {
+  width: 60%;
+}
+
+.first-login input[name="firstName"],
+.first-login input[name="lastName"] {
+  width: 90%;
+}
+
+.first-login input[name="birthDate"] {
+  width: 96%;
+}
+
+.first-login input[type="radio"] {
+  width: 38%;
+}
+
+.first-login input[name="height"],
+.first-login input[name="weight"] {
+  width: 90%;
 }

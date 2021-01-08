@@ -9,7 +9,7 @@ export class InterceptorService implements HttpInterceptor {
     constructor(private user: UserService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
-        return this.user.userSubject.pipe(
+        return this.user.authSubject.pipe(
             take(1),
             exhaustMap((user) => {
                 if (!user) {
@@ -20,6 +20,5 @@ export class InterceptorService implements HttpInterceptor {
                 return next.handle(modifiedRequest);
             })
         )
-
     }
 }
