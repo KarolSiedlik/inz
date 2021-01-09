@@ -17,4 +17,7 @@
   <div *ngIf='isAuthenticated && !userDisplayName && !isLoading'>
     <app-landing-first-login (firstLoginSubmit)="onFirstLoginSubmit($event)"></app-landing-first-login>
   </div>
+  <div *ngIf='isAuthenticated && userDisplayName && !isLoading'>
+    <app-landing-table [userDisplayName]='userDisplayName' [userData]='userData'></app-landing-table>
+  </div>
 </div>

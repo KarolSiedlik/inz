@@ -7,7 +7,7 @@ export interface IUserData {
         height: string;
     },
     userData: {
-        weight: string;
-        [x: string]: any;
+        weight: { date: Date, value: string }[];
+        [x: string]: { date: Date, value: string }[];
     }
 }

@@ -37,6 +37,7 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   onFirstLoginSubmit(form: NgForm) {
     if (form.valid) {
+      const date = new Date();
       const data: IUserData = {
         userInfo: {
           firstName: form.controls.firstName.value,
@@ -46,7 +47,9 @@ export class LandingComponent implements OnInit, OnDestroy {
           height: form.controls.height.value,
         },
         userData: {
-          weight: form.controls.weight.value,
+          weight: [
+            { date, value: form.controls.weight.value }
+          ]
         }
       };
 

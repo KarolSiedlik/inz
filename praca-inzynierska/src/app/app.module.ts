@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ErrorBlockComponent } from './components/error-block/error-block.component';
 import { InterceptorService } from './services/interceptor/interceptor.service';
+import { LandingFirstLoginComponent } from './components/landing/landing-first-login/landing-first-login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandingTableComponent } from './components/landing/landing-table/landing-table.component';
+import { MatTableModule } from '@angular/material/table'
 
 @NgModule({
   declarations: [
@@ -20,14 +24,18 @@ import { InterceptorService } from './services/interceptor/interceptor.service';
     RegisterComponent,
     LandingComponent,
     SpinnerComponent,
-    ErrorBlockComponent
+    ErrorBlockComponent,
+    LandingFirstLoginComponent,
+    LandingTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    MatTableModule,
+    BrowserAnimationsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
   bootstrap: [AppComponent]
