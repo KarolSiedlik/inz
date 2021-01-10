@@ -16,6 +16,13 @@ import { LandingFirstLoginComponent } from './components/landing/landing-first-l
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingTableComponent } from './components/landing/landing-table/landing-table.component';
 import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +33,8 @@ import { MatTableModule } from '@angular/material/table'
     SpinnerComponent,
     ErrorBlockComponent,
     LandingFirstLoginComponent,
-    LandingTableComponent
+    LandingTableComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +43,12 @@ import { MatTableModule } from '@angular/material/table'
     HttpClientModule,
     NgbModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatDialogModule,
     BrowserAnimationsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],

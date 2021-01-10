@@ -24,6 +24,8 @@
     "@angular/router": "~11.0.5",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "bootstrap": "^4.5.3",
+    "echarts": "^5.0.0",
+    "ngx-echarts": "^5.2.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

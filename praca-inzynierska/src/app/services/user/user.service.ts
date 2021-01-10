@@ -20,6 +20,7 @@ export interface IAuthResponseData {
 })
 export class UserService {
   authSubject = new BehaviorSubject<User>(null as unknown as User);
+  dataSubject = new BehaviorSubject<IUserData>(null as unknown as IUserData)
   displayName = '';
 
   private tokenExpirationTimer: any;
@@ -30,7 +31,7 @@ export class UserService {
   private readonly firebaseProjectKey = APP_CONFIG.firebaseProjectKey;
   private readonly userDataLocalStorageKey = APP_CONFIG.userDataLocalStorageKey;
 
-  public saveData(data: IUserData) {
+  public saveUserData(data: IUserData) {
     const body = JSON.stringify(data);
     const url = this.firebaseApiUrl + 'users/' + this.authSubject.value.id + '.json';
 
@@ -41,6 +42,10 @@ export class UserService {
     const url = this.firebaseApiUrl + 'users/' + this.authSubject.value.id + '.json';
 
     return this.http.get<IUserData>(url).toPromise();
+  }
+
+  public emitUserData(data: IUserData) {
+    this.dataSubject.next(data);
   }
 
   register(email: string, password: string) {
