@@ -3,7 +3,7 @@
     <img src="../../../assets/angular.png" alt="Angular Logo" class="mb-4" width="72" height="72">
     <app-spinner *ngIf="isLoading"></app-spinner>
     <app-error-block [errorMessage]="errorMessage" *ngIf="isError"></app-error-block>
-    <form *ngIf="!registeredSucessfully && !isLoading" class="form-sign" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form *ngIf="!isLoading" class="form-sign" (ngSubmit)="onSubmit(f)" #f="ngForm">
       <h1 class="h3 mb-3 font-weight-normal">Rejestracja</h1>
       <label for="inputEmail" class="sr-only">Adres email</label>
       <input type="email" name="inputEmail" id="inputEmail" placeholder="Adres email" class="form-control" required
@@ -22,13 +22,7 @@
         Masz już konto?
         <a routerLink="/login">Zaloguj się</a>
       </p>
-
       <a routerLink="/">Powrót na stronę główną.</a>
     </form>
-    <div *ngIf="registeredSucessfully" class="registeredSuccessfully">
-      <p>Rejestracja przebiegła pomyślnie.</p>
-      <p>Możesz teraz powrócić na stronę główną jako zalogowany użytkownik.</p>
-      <button routerLink="/" class="btn btn-primary">Powrót na stronę główną.</button>
-    </div>
   </div>
 </div>

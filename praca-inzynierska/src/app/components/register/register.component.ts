@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { errorMessages } from 'src/app/common/error-messages';
 import { IAuthResponseData, UserService } from 'src/app/services/user/user.service';
 
@@ -9,12 +10,12 @@ import { IAuthResponseData, UserService } from 'src/app/services/user/user.servi
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  registeredSucessfully = false;
   isLoading = false;
   isError = false;
   errorMessage = errorMessages.DEFAULT;
 
-  constructor(private user: UserService) { }
+  constructor(private user: UserService,
+    private router: Router) { }
 
   onSubmit(form: NgForm) {
     if (form.valid) {
@@ -44,7 +45,7 @@ export class RegisterComponent {
   private handleUserRegistrationSuccess(data: IAuthResponseData) {
     this.user.handleUserAuthentication(data, true);
     this.isLoading = false;
-    this.registeredSucessfully = true;
+    this.router.navigateByUrl('/');
   }
 
   private handleUserRegistrationError(error: { error: { message: string; } }) {

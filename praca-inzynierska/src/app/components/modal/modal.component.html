@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Edytuj lub usuń wpis</h1>
+<div mat-dialog-content>Nowa wartość:</div>
+
+<div mat-dialog-actions>
+  <mat-form-field>
+    <mat-label>Wartość</mat-label>
+    <input matInput [(ngModel)]="newValue">
+  </mat-form-field>
+  <div class="buttons-wrapper">
+    <button mat-button [mat-dialog-close]='"delete"' class="btn btn-danger delete">Usuń</button>
+    <button mat-button [mat-dialog-close]='newValue' [disabled]='!newValue' class="btn btn-primary edit">Edytuj</button>
+  </div>
+</div>

@@ -18,6 +18,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   userData!: IUserData;
 
   private userAuthSubscription: Subscription | undefined;
+  private userDataSubscription: Subscription | undefined;
 
   constructor(private user: UserService,
     private router: Router) { }
@@ -29,6 +30,12 @@ export class LandingComponent implements OnInit, OnDestroy {
         this.getUserData();
       }
     });
+    this.userDataSubscription = this.user.dataSubject.subscribe((data) => {
+      if (data) {
+        this.userData = data;
+        this.userDisplayName = data.info.firstName;
+      }
+    })
   }
 
   onLoginButtonClicked() {
@@ -37,16 +44,16 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   onFirstLoginSubmit(form: NgForm) {
     if (form.valid) {
-      const date = new Date();
+      const date = new Date().toDateString();
       const data: IUserData = {
-        userInfo: {
+        info: {
           firstName: form.controls.firstName.value,
           lastName: form.controls.lastName.value,
           born: form.controls.birthDate.value,
           sex: form.controls.sex.value,
           height: form.controls.height.value,
         },
-        userData: {
+        data: {
           weight: [
             { date, value: form.controls.weight.value }
           ]
@@ -59,7 +66,7 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   private saveUserData(data: IUserData) {
     this.isLoading = true;
-    this.user.saveData(data).then(
+    this.user.saveUserData(data).then(
       (res: IUserData) => this.handleUserDataResponse(res),
       (err) => this.handleUserDataError(err),
     )
@@ -76,8 +83,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   private handleUserDataResponse(data: IUserData) {
     this.isLoading = false;
     if (data) { // with no data in db, promise will be resolved as null
-      this.userData = data;
-      this.userDisplayName = this.userData.userInfo.firstName;
+      this.user.emitUserData(data);
     }
   }
 
@@ -88,8 +94,12 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userAuthSubscription && this.userAuthSubscription.unsubscribe) {
-      this.userAuthSubscription.unsubscribe();
-    }
+    const subscriptions = [this.userAuthSubscription, this.userDataSubscription];
+
+    subscriptions.forEach((sub) => {
+      if (sub && sub.unsubscribe) {
+        sub.unsubscribe();
+      }
+    })
   }
 }

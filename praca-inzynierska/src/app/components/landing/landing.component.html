@@ -5,6 +5,9 @@
         (click)="onLoginButtonClicked()">{{isAuthenticated ? 'Wyloguj się' : 'Zaloguj się'}}</button>
     </div>
   </div>
+  <div *ngIf='isLoading' class="spinner-wrapper">
+    <app-spinner></app-spinner>
+  </div>
   <div *ngIf="!isAuthenticated">
     <h1>Witaj!</h1>
     <br>
@@ -18,6 +21,6 @@
     <app-landing-first-login (firstLoginSubmit)="onFirstLoginSubmit($event)"></app-landing-first-login>
   </div>
   <div *ngIf='isAuthenticated && userDisplayName && !isLoading'>
-    <app-landing-table [userDisplayName]='userDisplayName' [userData]='userData'></app-landing-table>
+    <app-landing-table></app-landing-table>
   </div>
 </div>
