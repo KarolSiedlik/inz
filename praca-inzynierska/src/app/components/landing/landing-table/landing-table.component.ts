@@ -23,6 +23,8 @@ export class LandingTableComponent implements OnInit, AfterViewInit, OnDestroy {
   isLoading = false;
   isError = false;
   userDisplayName!: string;
+  userBmi!: number;
+  bmiIndicator!: string;
 
   private userData!: IUserData;
 
@@ -121,6 +123,39 @@ export class LandingTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dataSource = new MatTableDataSource<any>(this.elementData);
     this.dataSource.paginator = this.paginator;
+
+    this.updateUserBmi();
+  }
+
+  private updateUserBmi() {
+    const userHeight = this.userData.info.height;
+    const latestUserWeight = this.userData.data.weight[this.userData.data.weight.length - 1].value;
+    this.userBmi = +(+latestUserWeight / ((+userHeight / 100) * (+userHeight / 100))).toFixed(2);
+
+    if (this.userBmi < 16) {
+      this.bmiIndicator = 'Wygłodzenie'
+    }
+    if (this.userBmi >= 16 && this.userBmi <= 16.99) {
+      this.bmiIndicator = 'Wychudzenie'
+    }
+    if (this.userBmi >= 17 && this.userBmi <= 18.49) {
+      this.bmiIndicator = 'Niedowaga'
+    }
+    if (this.userBmi >= 18.5 && this.userBmi <= 24.99) {
+      this.bmiIndicator = 'Właściwa waga'
+    }
+    if (this.userBmi >= 25 && this.userBmi <= 29.99) {
+      this.bmiIndicator = 'Nadwaga'
+    }
+    if (this.userBmi >= 30 && this.userBmi <= 34.99) {
+      this.bmiIndicator = 'Otyłość I stopnia'
+    }
+    if (this.userBmi >= 35 && this.userBmi <= 39.99) {
+      this.bmiIndicator = 'Otyłość II stopnia'
+    }
+    if (this.userBmi >= 40) {
+      this.bmiIndicator = 'Otyłość II stopnia'
+    }
   }
 
   ngAfterViewInit() {

@@ -23,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './components/modal/modal.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { ChartComponent } from './components/landing/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { ModalComponent } from './components/modal/modal.component';
     LandingFirstLoginComponent,
     LandingTableComponent,
     ModalComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,10 @@ import { ModalComponent } from './components/modal/modal.component';
     MatIconModule,
     MatTooltipModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
   bootstrap: [AppComponent]

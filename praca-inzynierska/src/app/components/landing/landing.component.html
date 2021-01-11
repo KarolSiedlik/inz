@@ -21,6 +21,9 @@
     <app-landing-first-login (firstLoginSubmit)="onFirstLoginSubmit($event)"></app-landing-first-login>
   </div>
   <div *ngIf='isAuthenticated && userDisplayName && !isLoading'>
-    <app-landing-table></app-landing-table>
+    <div class="table-chart">
+      <app-landing-table></app-landing-table>
+      <app-chart></app-chart>
+    </div>
   </div>
 </div>

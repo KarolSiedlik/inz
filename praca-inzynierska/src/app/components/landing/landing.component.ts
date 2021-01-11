@@ -47,7 +47,7 @@ export class LandingComponent implements OnInit, OnDestroy {
       const date = new Date().toDateString();
       const data: IUserData = {
         info: {
-          firstName: form.controls.firstName.value,
+          firstName: form.controls.firstName.value[0].toUpperCase() + form.controls.firstName.value.slice(1),
           lastName: form.controls.lastName.value,
           born: form.controls.birthDate.value,
           sex: form.controls.sex.value,

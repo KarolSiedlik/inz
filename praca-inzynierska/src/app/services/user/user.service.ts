@@ -62,6 +62,7 @@ export class UserService {
 
   logout() {
     this.authSubject.next(null as unknown as User);
+    this.dataSubject.next(null as unknown as IUserData)
     this.router.navigateByUrl('/');
     localStorage.removeItem(this.userDataLocalStorageKey);
     if (this.tokenExpirationTimer) {

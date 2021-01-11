@@ -1,55 +1,59 @@
-<h1>Witaj, {{userDisplayName}}!</h1>
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+<div class="wrapper">
+  <h1>Witaj, {{userDisplayName}}!</h1>
+  <p *ngIf='userBmi'>BMI na podstawie Twojej ostatniej wagi: {{userBmi}} - <span
+      matTooltip="Kliknij aby dowiedzieć się więcej" matTooltipPosition="right">{{bmiIndicator}}</span></p>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
 
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef>Pozycja</th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Pozycja</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef>Data</th>
-      <td mat-cell *matCellDef="let element">{{element.date}}</td>
-    </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell *matCellDef="let element">{{element.date}}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef>Waga</th>
-      <td mat-cell *matCellDef="let element">{{element.weight}}</td>
-    </ng-container>
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef>Waga</th>
+        <td mat-cell *matCellDef="let element">{{element.weight}}</td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowModify(row)"
-      matTooltip="Kliknij na wpis, aby edytować" matTooltipPosition="right">
-    </tr>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons='false'></mat-paginator>
-</div>
-<div *ngIf='isLoading' class="spinner-wrapper">
-  <app-spinner></app-spinner>
-</div>
-<div class="add-new-value-wrapper" *ngIf='!isLoading'>
-  <p>Dodaj nowy wpis:</p>
-  <form #f="ngForm" (ngSubmit)="onAddNewValue(f)">
-    <div class="form__inner">
-      <div class="form__select">
-        <mat-form-field appearance="outline">
-          <mat-label>Nazwa</mat-label>
-          <mat-select ngModel name='key' required>
-            <mat-option *ngFor="let selectOption of selectOptions" [value]="selectOption.value">
-              {{selectOption.displayValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowModify(row)"
+        matTooltip="Kliknij na wpis, aby edytować" matTooltipPosition="right">
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons='false'></mat-paginator>
+  </div>
+  <div *ngIf='isLoading' class="spinner-wrapper">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="add-new-value-wrapper" *ngIf='!isLoading'>
+    <p>Dodaj nowy wpis:</p>
+    <form #f="ngForm" (ngSubmit)="onAddNewValue(f)">
+      <div class="form__inner">
+        <div class="form__select">
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwa</mat-label>
+            <mat-select ngModel name='key' required>
+              <mat-option *ngFor="let selectOption of selectOptions" [value]="selectOption.value">
+                {{selectOption.displayValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form__input">
+          <mat-form-field appearance="outline">
+            <mat-label>Wartość</mat-label>
+            <input matInput ngModel required name='value'>
+          </mat-form-field>
+        </div>
+        <div class="button-wrapper">
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Zapisz</button>
+        </div>
       </div>
-      <div class="form__input">
-        <mat-form-field appearance="outline">
-          <mat-label>Wartość</mat-label>
-          <input matInput ngModel required name='value'>
-        </mat-form-field>
-      </div>
-      <div class="button-wrapper">
-        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Zapisz</button>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
