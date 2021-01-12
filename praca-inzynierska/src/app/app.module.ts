@@ -25,6 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './components/modal/modal.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartComponent } from './components/landing/chart/chart.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { BmiInfoComponent } from './components/bmi-info/bmi-info.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { ChartComponent } from './components/landing/chart/chart.component';
     LandingTableComponent,
     ModalComponent,
     ChartComponent,
+    BmiInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { ChartComponent } from './components/landing/chart/chart.component';
     MatTooltipModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    MatSlideToggleModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })

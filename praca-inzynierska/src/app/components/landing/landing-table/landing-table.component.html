@@ -1,7 +1,9 @@
 <div class="wrapper">
   <h1>Witaj, {{userDisplayName}}!</h1>
-  <p *ngIf='userBmi'>BMI na podstawie Twojej ostatniej wagi: {{userBmi}} - <span
-      matTooltip="Kliknij aby dowiedzieć się więcej" matTooltipPosition="right">{{bmiIndicator}}</span></p>
+  <p *ngIf='userBmi' class="bmi-desc">Wskaźnik BMI na podstawie Twojej ostatniej wagi: {{userBmi}} - <span
+      matTooltip="Kliknij aby dowiedzieć się więcej" matTooltipPosition="right"
+      [ngStyle]="{'background-color': bmiBackgroundColor, 'color': bmiColor}" class="bmi-indicator"
+      routerLink='/bmi'>{{bmiIndicator}}</span></p>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
@@ -22,7 +24,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowModify(row)"
-        matTooltip="Kliknij na wpis, aby edytować" matTooltipPosition="right">
+        matTooltip="Kliknij na wpis, aby edytować" matTooltipPosition="left">
       </tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons='false'></mat-paginator>

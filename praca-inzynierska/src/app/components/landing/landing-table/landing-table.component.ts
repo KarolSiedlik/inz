@@ -25,8 +25,10 @@ export class LandingTableComponent implements OnInit, AfterViewInit, OnDestroy {
   userDisplayName!: string;
   userBmi!: number;
   bmiIndicator!: string;
+  bmiColor = 'black';
+  bmiBackgroundColor = 'white';
 
-  private userData!: IUserData;
+  userData!: IUserData;
 
   elementData: IDataTableRow[] = [];
   displayedColumns: string[] = ['position', 'date', 'weight'];
@@ -69,7 +71,13 @@ export class LandingTableComponent implements OnInit, AfterViewInit, OnDestroy {
     const rowIndexInUserData = this.userData.data.weight.length - rowIndex - 1;
 
     if (newValue === 'delete') {
-      this.userData.data.weight.splice(rowIndexInUserData, 1)
+      if (this.userData.data.weight.length > 1) {
+        this.userData.data.weight.splice(rowIndexInUserData, 1)
+      } else {
+        alert('Ostatni rekord nie może zostać usunięty, spróbuj go edytować.');
+        return;
+      }
+
     } else {
       this.userData.data.weight[rowIndexInUserData].value = newValue;
     }
@@ -133,28 +141,44 @@ export class LandingTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.userBmi = +(+latestUserWeight / ((+userHeight / 100) * (+userHeight / 100))).toFixed(2);
 
     if (this.userBmi < 16) {
-      this.bmiIndicator = 'Wygłodzenie'
+      this.bmiIndicator = 'Wygłodzenie';
+      this.bmiBackgroundColor = '#082E79';
+      this.bmiColor = 'white';
     }
     if (this.userBmi >= 16 && this.userBmi <= 16.99) {
       this.bmiIndicator = 'Wychudzenie'
+      this.bmiBackgroundColor = '#4169E1';
+      this.bmiColor = 'white';
     }
     if (this.userBmi >= 17 && this.userBmi <= 18.49) {
       this.bmiIndicator = 'Niedowaga'
+      this.bmiBackgroundColor = '#ACE1AF';
+      this.bmiColor = 'black';
     }
     if (this.userBmi >= 18.5 && this.userBmi <= 24.99) {
       this.bmiIndicator = 'Właściwa waga'
+      this.bmiBackgroundColor = '#CDEBA7';
+      this.bmiColor = 'black';
     }
     if (this.userBmi >= 25 && this.userBmi <= 29.99) {
       this.bmiIndicator = 'Nadwaga'
+      this.bmiBackgroundColor = '#FFFF99';
+      this.bmiColor = 'black';
     }
     if (this.userBmi >= 30 && this.userBmi <= 34.99) {
       this.bmiIndicator = 'Otyłość I stopnia'
+      this.bmiBackgroundColor = '#FDE456';
+      this.bmiColor = 'black';
     }
     if (this.userBmi >= 35 && this.userBmi <= 39.99) {
       this.bmiIndicator = 'Otyłość II stopnia'
+      this.bmiBackgroundColor = '#CF2929';
+      this.bmiColor = 'black';
     }
     if (this.userBmi >= 40) {
-      this.bmiIndicator = 'Otyłość II stopnia'
+      this.bmiIndicator = 'Otyłość III stopnia'
+      this.bmiBackgroundColor = '#801818';
+      this.bmiColor = 'white';
     }
   }
 

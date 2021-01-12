@@ -1,1 +1,11 @@
-<div echarts [options]="options" class="chart"></div>
+<div *ngIf='userData.data.weight.length <= 2' class="elements-info">
+  <h4>Potrzebujesz co najmniej 3 elementów, aby wyświetlić wykres.</h4>
+</div>
+<div *ngIf='userData.data.weight.length > 2'>
+  <div>
+    <div echarts [options]="options" class="chart"></div>
+  </div>
+  <div class="slide-toggle">
+    <mat-slide-toggle [color]="'primary'" (change)='onChartTypeChange($event)'>Wykres liniowy</mat-slide-toggle>
+  </div>
+</div>
