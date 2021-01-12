@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="header">
+    <h1>Twój profil</h1>
+    <div>
+      <button class="btn btn-secondary" routerLink='/'>Wróć na stronę główną</button>
+    </div>
+  </div>
+  <div class="user-info-wrapper">
+    <div *ngIf='userData' class="user-info">
+      <h5>Imię: <span class="user-info__span">{{userData.info.firstName}}</span>
+      </h5>
+      <h5>Nazwisko: <span class="user-info__span"> {{userData.info.lastName}}</span></h5>
+      <h5>Data urodzenia: <span class="user-info__span">{{userData.info.born}}</span> </h5>
+      <h5>Płeć: <span class="user-info__span">{{userData.info.sex === 'male' ? 'Męska' : 'Żeńska'}}</span> </h5>
+      <h5>Wzrost: <span class="user-info__span">{{userData.info.height}} cm</span> </h5>
+    </div>
+    <div class="form">
+      <form #f="ngForm" (ngSubmit)="onEditUserInfoSubmit(f)">
+        <div>
+          <div>
+            <label for="firstName">Imię</label>
+            <input type="text" id="firstName" placeholder="Imię" class="form-control" required autofocus ngModel
+              name="firstName" autocomplete="given-name">
+          </div>
+          <div>
+            <label for="lastName">Nazwisko</label>
+            <input type="text" id="lastName" placeholder="Nazwisko" class="form-control" required ngModel
+              name="lastName" autocomplete="family-name">
+          </div>
+        </div>
+        <div>
+          <div>
+            <label for="birthDate">Data urodzenia</label>
+            <input type="date" id="birthDate" placeholder="Data urodzenia" class="form-control" required ngModel
+              name="birthDate" autocomplete="">
+          </div>
+          <div>
+            <label>Płeć</label>
+            <div class="sex-radio">
+              <input type="radio" value="male" name="sex" ngModel>
+              <label for="male">Męska</label>
+            </div>
+            <div class="sex-radio">
+              <input type="radio" value="female" name="sex" ngModel>
+              <label for="female">Żeńska</label>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label for="height">Wzrost</label>
+            <input type="text" id="height" placeholder="Wzrost" class="form-control" required ngModel name="height"
+              autocomplete="height">
+          </div>
+        </div>
+        <div class="buttons">
+          <div>
+            <button class="btn btn-primary" [disabled]='!f.valid' type="submit">Edytuj</button>
+          </div>
+          <div>
+            <button class="btn btn-danger" type="button" (click)="onDeleteAccount()">Usuń konto</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>
