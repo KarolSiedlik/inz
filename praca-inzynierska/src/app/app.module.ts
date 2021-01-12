@@ -27,6 +27,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { ChartComponent } from './components/landing/chart/chart.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BmiInfoComponent } from './components/bmi-info/bmi-info.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { DeleteModalComponent } from './components/user-profile/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { BmiInfoComponent } from './components/bmi-info/bmi-info.component';
     ModalComponent,
     ChartComponent,
     BmiInfoComponent,
+    UserProfileComponent,
+    DeleteModalComponent,
   ],
   imports: [
     BrowserModule,

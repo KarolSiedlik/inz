@@ -54,6 +54,12 @@ export class UserService {
     return this.http.post<IAuthResponseData>(registerUrl, body).toPromise();
   }
 
+  deteleAccount() {
+    const deleteUrl = APP_CONFIG.deleteAccountUrl + this.firebaseProjectKey;
+    const body = { idToken: this.authSubject.value.token }
+    return this.http.post(deleteUrl, body).toPromise();
+  }
+
   login(email: string, password: string) {
     const loginUrl = APP_CONFIG.loginUrl + this.firebaseProjectKey;
     const body = { email, password, returnSecureToken: true };

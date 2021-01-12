@@ -40,7 +40,7 @@ export class ChartComponent implements OnInit, OnDestroy {
 
     this.options = {
       legend: {
-        data: ['Waga'],
+        data: ['Waga (kg)'],
         align: 'left',
       },
       tooltip: {},
@@ -54,7 +54,7 @@ export class ChartComponent implements OnInit, OnDestroy {
       yAxis: {},
       series: [
         {
-          name: 'Waga',
+          name: 'Waga (kg)',
           type: this.chartType,
           data: data1,
           animationDelay: (idx: number) => idx * 10,

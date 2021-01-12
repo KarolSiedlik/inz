@@ -1,6 +1,8 @@
 <div class="container">
   <div class="wrapper">
     <div class="button-wrapper" *ngIf="!isLoading">
+      <button class="btn btn-secondary" *ngIf='isAuthenticated && userDisplayName' routerLink='/profile'>Mój
+        profil</button>
       <button class="btn btn-primary"
         (click)="onLoginButtonClicked()">{{isAuthenticated ? 'Wyloguj się' : 'Zaloguj się'}}</button>
     </div>
