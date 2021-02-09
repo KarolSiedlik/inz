@@ -19,9 +19,9 @@ export interface IAuthResponseData {
   providedIn: 'root'
 })
 export class UserService {
-  authSubject = new BehaviorSubject<User>(null as unknown as User);
-  dataSubject = new BehaviorSubject<IUserData>(null as unknown as IUserData)
-  displayName = '';
+  authSubject = new BehaviorSubject<User>(null);
+  dataSubject = new BehaviorSubject<IUserData>(null);
+  displayName: string;
 
   private tokenExpirationTimer: any;
 
@@ -30,6 +30,18 @@ export class UserService {
   private readonly firebaseApiUrl = APP_CONFIG.firebaseApiUrl;
   private readonly firebaseProjectKey = APP_CONFIG.firebaseProjectKey;
   private readonly userDataLocalStorageKey = APP_CONFIG.userDataLocalStorageKey;
+
+  register(email: string, password: string) {
+    const registerUrl = APP_CONFIG.registerUrl + this.firebaseProjectKey;
+    const body = { email, password, returnSecureToken: true };
+    return this.http.post<IAuthResponseData>(registerUrl, body).toPromise();
+  }
+
+  login(email: string, password: string) {
+    const loginUrl = APP_CONFIG.loginUrl + this.firebaseProjectKey;
+    const body = { email, password, returnSecureToken: true };
+    return this.http.post<IAuthResponseData>(loginUrl, body).toPromise();
+  }
 
   public saveUserData(data: IUserData) {
     const body = JSON.stringify(data);
@@ -48,22 +60,10 @@ export class UserService {
     this.dataSubject.next(data);
   }
 
-  register(email: string, password: string) {
-    const registerUrl = APP_CONFIG.registerUrl + this.firebaseProjectKey;
-    const body = { email, password, returnSecureToken: true };
-    return this.http.post<IAuthResponseData>(registerUrl, body).toPromise();
-  }
-
   deteleAccount() {
     const deleteUrl = APP_CONFIG.deleteAccountUrl + this.firebaseProjectKey;
     const body = { idToken: this.authSubject.value.token }
     return this.http.post(deleteUrl, body).toPromise();
-  }
-
-  login(email: string, password: string) {
-    const loginUrl = APP_CONFIG.loginUrl + this.firebaseProjectKey;
-    const body = { email, password, returnSecureToken: true };
-    return this.http.post<IAuthResponseData>(loginUrl, body).toPromise();
   }
 
   logout() {

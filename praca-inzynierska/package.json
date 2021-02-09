@@ -8,6 +8,8 @@
     "build-production": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
+    "open": "./node_modules/.bin/cypress open",
+    "cypress": "(start npm run start) && (start npm run open)",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -25,6 +27,7 @@
     "@angular/router": "~11.0.5",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "bootstrap": "^4.5.3",
+    "cypress": "^6.2.1",
     "echarts": "^5.0.0",
     "ngx-echarts": "^5.2.2",
     "rxjs": "~6.6.0",

@@ -16,7 +16,7 @@
       <input type="password" name="checkPassword" id="checkPassword" placeholder="Powtórz hasło" class="form-control"
         required ngModel name="checkPassword" autocomplete="new-password" pattern=^[a-zA-Z0-9]{6,}$
         title="Pole musi się zgadzać z poprzednim">
-      <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Zarejestruj
+      <button id="registerBtn" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Zarejestruj
         się</button>
       <p class="mt-5 mb-3 text-muted">
         Masz już konto?

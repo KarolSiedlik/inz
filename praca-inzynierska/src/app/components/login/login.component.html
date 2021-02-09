@@ -18,7 +18,8 @@
           Zapamiętaj mnie
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Zaloguj się</button>
+      <button class="btn btn-lg btn-primary btn-block" id="loginSubmitButton" type="submit"
+        [disabled]="!f.valid">Zaloguj się</button>
       <p class="mt-5 mb-3 text-muted">
         Nie masz konta?
         <a routerLink="/register">Zarejestruj się</a>

@@ -3,7 +3,7 @@
     <div class="button-wrapper" *ngIf="!isLoading">
       <button class="btn btn-secondary" *ngIf='isAuthenticated && userDisplayName' routerLink='/profile'>Mój
         profil</button>
-      <button class="btn btn-primary"
+      <button class="btn btn-primary" id='loginBtn'
         (click)="onLoginButtonClicked()">{{isAuthenticated ? 'Wyloguj się' : 'Zaloguj się'}}</button>
     </div>
   </div>
@@ -16,7 +16,8 @@
     <p>Ta aplikacja pozwala na przechowywanie podstawowych danych o Twoim ciele.</p>
     <p>Użyj jej, aby monitorować stan swojego zdrowia oraz BMI.</p>
     <p class="getting-started">Zaloguj się, aby rozpocząć.</p>
-    <h3 class="description-footer">Nie masz jeszcze konta? <a routerLink="register">Zarejestruj się.</a></h3>
+    <h3 class="description-footer">Nie masz jeszcze konta? <a routerLink="register" id="register">Zarejestruj się.</a>
+    </h3>
   </div>
 
   <div *ngIf='isAuthenticated && !userDisplayName && !isLoading'>
