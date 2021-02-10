@@ -11,11 +11,12 @@
         title="Adres email">
       <label for="inputPassword" class="sr-only">Hasło</label>
       <input type="password" name="inputPassword" id="inputPassword" placeholder="Hasło" class="form-control" required
-        ngModel name="password" autocomplete="new-password" pattern=^[a-zA-Z0-9]{6,}$ title="Wpisz conajmniej 6 znaków">
+        ngModel name="password" autocomplete="new-password" pattern=^[a-zA-Z0-9]{6,}$
+        title="Wpisz co najmniej 6 znaków. Hasła muszą być jednakowe.">
       <label for="checkPassword" class="sr-only">Powtórz hasło</label>
       <input type="password" name="checkPassword" id="checkPassword" placeholder="Powtórz hasło" class="form-control"
         required ngModel name="checkPassword" autocomplete="new-password" pattern=^[a-zA-Z0-9]{6,}$
-        title="Pole musi się zgadzać z poprzednim">
+        title="Pole musi się zgadzać z poprzednim.">
       <button id="registerBtn" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid">Zarejestruj
         się</button>
       <p class="mt-5 mb-3 text-muted">

@@ -24,7 +24,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowModify(row)"
-        matTooltip="Kliknij na wpis, aby edytować" matTooltipPosition="left">
+        matTooltip="Kliknij na wpis, aby edytować" matTooltipPosition="right">
       </tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons='false'></mat-paginator>

@@ -22,7 +22,6 @@ export class ChartComponent implements OnInit, OnDestroy {
 
     this.userDataSubscription = this.user.dataSubject.subscribe((data) => {
       this.userData = data;
-      console.warn(data);
       this.updateChart();
     })
 

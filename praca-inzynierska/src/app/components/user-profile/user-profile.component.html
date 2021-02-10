@@ -11,7 +11,7 @@
       </h5>
       <h5>Nazwisko: <span class="user-info__span"> {{userData.info.lastName}}</span></h5>
       <h5>Data urodzenia: <span class="user-info__span">{{userData.info.born}}</span> </h5>
-      <h5>Płeć: <span class="user-info__span">{{userData.info.sex === 'male' ? 'Męska' : 'Żeńska'}}</span> </h5>
+      <h5>Płeć: <span class="user-info__span">{{userData.info.sex === 'male' ? 'Mężczyzna' : 'Kobieta'}}</span></h5>
       <h5>Wzrost: <span class="user-info__span">{{userData.info.height}} cm</span> </h5>
     </div>
     <div class="form">
@@ -38,11 +38,11 @@
             <label>Płeć</label>
             <div class="sex-radio">
               <input type="radio" value="male" name="sex" ngModel>
-              <label for="male">Męska</label>
+              <label for="male">Mężczyzna</label>
             </div>
             <div class="sex-radio">
               <input type="radio" value="female" name="sex" ngModel>
-              <label for="female">Żeńska</label>
+              <label for="female">Kobieta</label>
             </div>
           </div>
         </div>

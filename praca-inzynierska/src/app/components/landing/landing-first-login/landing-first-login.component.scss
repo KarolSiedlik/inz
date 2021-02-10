@@ -23,20 +23,27 @@
   &__sex {
     width: 23%;
     justify-content: flex-start;
+    margin-left: 11px;
 
     &__inner {
       margin-left: 10px;
+      display: flex;
     }
 
     &__inner-first {
       margin-top: 10px;
       margin-left: 10px;
+      display: flex;
     }
   }
 
   &__date-sex-group {
     display: flex;
     flex-direction: row;
+
+    & div {
+      margin-top: 5px;
+    }
   }
 
   &__height-weight-group {
@@ -69,4 +76,6 @@
 
 .first-login input[type="radio"] {
   width: 38%;
+  min-width: 38%;
+  margin-top: 5px;
 }
